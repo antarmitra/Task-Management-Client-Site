@@ -1,17 +1,62 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 
 
 const Navbar = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
+
+
     const navItems = <>
-        <div className="lg:flex gap-5">
-            <div className="text-base font-medium">Home</div>
-            <div className="text-base font-medium">About</div>
-            <div className="text-base font-medium">Work</div>
-            <div className="text-base font-medium">Contact</div>
-            <div className="text-base font-medium border-2 border-white p-2 rounded-lg btn"><Link to="/login">Login</Link></div>
-            <div className="text-base font-medium bg-white p-2 rounded-lg btn">SignUp</div>
+        <div className="lg:flex justify-between gap-7 items-center">
+            <div className="text-base font-semibold uppercase "><NavLink to='/'>Home</NavLink></div>
+            <div className="text-base font-semibold uppercase "> <NavLink to='/allproperties'>About</NavLink> </div>
+            <div className="text-base font-semibold uppercase "> <NavLink to='/dashboard'>Contact</NavLink> </div>
+
+
+
+            {
+                user ? <>
+                    <div className="flex gap-2 flex-row-reverse lg:flex-row">
+
+                        <div>
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user.photoURL} />
+                                    </div>
+                                </label>
+                                <ul tabIndex={0} className="mt-4 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li className='text-black'><a>{user.displayName}</a></li>
+                                    <li className='text-black'><a>{user.email}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <button onClick={handleLogOut} className="btn btn-outline btn-primary text-white font-bold uppercase">Log Out</button>
+                        </div>
+                    </div>
+                </>
+                    :
+                    <>
+                        <li className="uppercase  font-semibold"><Link to='/login'>Login</Link></li>
+                        <button className="btn btn-outline btn-primary uppercase"><Link to='/signup'>Sign Up</Link></button>
+                    </>
+            }
         </div>
     </>
+
+
+
+
+
 
 
 
