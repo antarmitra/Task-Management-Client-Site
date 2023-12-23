@@ -6,16 +6,24 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
+import {
+  QueryClient,
+  QueryClientProvider
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 import Main from './component/Layout/Main';
 import Home from './component/Home/Home';
 import Login from './component/Login/Login';
 import AuthProvider from './component/Providers/AuthProvider';
 import SignUp from './component/SignUp/SignUp';
 import Dashboard from './component/Layout/Dashboard';
-import PreviousTasks from './component/DashboardPage/PreviousTasks/PreviousTasks';
 import MyProfile from './component/DashboardPage/MyProfile/MyProfile';
-import NewTasks from './component/DashboardPage/NewTasks/NewTasks';
 import PrivateRoute from './component/PrivateRoute/PrivateRoute';
+import AddTask from './component/DashboardPage/AddTask/AddTask';
+import AllTask from './component/DashboardPage/AllTask/AllTask';
+// import { QueryClientProvider } from '@tanstack/react-query';
 
 
 
@@ -44,17 +52,18 @@ const router = createBrowserRouter([
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
-        path: 'myprofile',
+        path: 'myProfile',
         element: <MyProfile></MyProfile>
       },
       {
-        path: 'previousTasks',
-        element: <PreviousTasks></PreviousTasks>
+        path: 'addTask',
+        element: <AddTask></AddTask>
       },
       {
-        path: 'newTasks',
-        element: <NewTasks></NewTasks>
+        path: 'allTask',
+        element: <AllTask></AllTask>
       }
+
     ]
   }
 ]);
@@ -62,7 +71,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>,
 )

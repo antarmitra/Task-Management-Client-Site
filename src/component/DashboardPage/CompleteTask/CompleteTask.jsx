@@ -1,6 +1,6 @@
 
 
-const NewTasks = () => {
+const CompleteTask = () => {
     return (
         <div>
             <h1>Welcome</h1>
@@ -8,4 +8,4 @@ const NewTasks = () => {
     );
 };
 
-export default NewTasks;
+export default CompleteTask;
