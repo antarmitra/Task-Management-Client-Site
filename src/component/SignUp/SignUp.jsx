@@ -5,7 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FiGithub } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import "./SignUp.css"
-import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { app } from '../Banner/Firebase/firebase.config';
@@ -26,6 +27,7 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user);
                 navigate(location?.state ? location.state : '/')
+                toast.success('User Created Successfully')
             })
             .catch(error => {
                 console.log('error', error.message);
@@ -55,8 +57,9 @@ const SignUp = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
+                // toast.success('User Created Successfully')
                 navigate(location?.state ? location.state : '/')
-                toast.success('user create successfully')
+                toast.success('User Created Successfully')
                 e.target.reset();
                 updateProfile(result.user, {
                     displayName: name,
@@ -137,8 +140,9 @@ const SignUp = () => {
                         </form>
                     </div>
                 </div>
+                <ToastContainer></ToastContainer>
             </div>
-            <Toaster></Toaster>
+
         </div>
     );
 };

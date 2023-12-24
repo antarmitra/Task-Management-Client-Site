@@ -17,8 +17,9 @@ const Navbar = () => {
     const navItems = <>
         <div className="lg:flex justify-between gap-7 items-center">
             <div className="text-base font-semibold uppercase "><NavLink to='/'>Home</NavLink></div>
-            <div className="text-base font-semibold uppercase "> <NavLink to='/allproperties'>About</NavLink> </div>
-            <div className="text-base font-semibold uppercase "> <NavLink to='/dashboard'>Contact</NavLink> </div>
+            <div className="text-base font-semibold uppercase "> <NavLink to='about'>About</NavLink> </div>
+            <div className="text-base font-semibold uppercase "> <NavLink to='blog'>Blog</NavLink> </div>
+            <div className="text-base font-semibold uppercase "> <NavLink to='service'>Service</NavLink> </div>
 
 
 

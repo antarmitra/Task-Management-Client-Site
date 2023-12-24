@@ -1,12 +1,13 @@
 import Banner from "../Banner/Banner";
-import Navbar from "../Navbar/Navbar";
+import Section from "../Section/Section";
+
 
 
 const Home = () => {
     return (
         <div>
-            <Navbar></Navbar>
             <Banner></Banner>
+            <Section></Section>
         </div>
     );
 };

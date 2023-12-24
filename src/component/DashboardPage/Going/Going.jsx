@@ -5,14 +5,13 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../hook/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-import toast from "react-hot-toast";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useForm } from "react-hook-form";
 
 const Going = ({ task, refetch }) => {
-    console.log(task);
 
     const { _id } = task;
-
     const modalId = `my_modal_${_id}`;
     const axiosPublic = useAxiosPublic();
     const { user } = useContext(AuthContext);
@@ -57,8 +56,8 @@ const Going = ({ task, refetch }) => {
             email: user?.email
         }
         console.log(taskItem);
-        const updateTask = { taskItem };
-        const res = await axiosPublic.patch(`/adds/${task._id}`, updateTask);
+        // const updateTask = { taskItem };
+        const res = await axiosPublic.patch(`/adds/${task._id}`, taskItem);
         console.log(res.data);
 
 
@@ -69,45 +68,34 @@ const Going = ({ task, refetch }) => {
         }
     }
 
+    const handleUpdateStatusComplete = async (id) => {
+        const res = await axiosPublic.patch(`/adds/complete/${id}`)
+        console.log(res);
+        if (res.data.modifiedCount > 0) {
+            toast.success('Complete Task');
+            refetch();
+        }
+    }
+
 
     return (
-        <div>
-            <div className="flex justify-between  items-center mt-5 bg-[#AFC8AD] p-2 rounded-lg ">
-
+        <div className="flex justify-between items-center mt-5 bg-[#AFC8AD] p-2 rounded-lg ">
+            <div className="flex gap-5">
+                <button>
+                    <input onClick={() => handleUpdateStatusComplete(task._id)} type="checkbox" checked="checked" className="checkbox w-6 h-6 mt-3" />
+                </button>
                 <div>
                     <h3 className="text-lg font-semibold">{task.title}</h3>
                     <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-5">
                         <h3>Deadlines: {task.date}</h3>
                         <h3>Priority: {task.priority}</h3>
-
-                        {/* {task.description.length > 20 ? */}
-
-                        <div className="flex items-center">
-                            {/* <p className="">{task.description.slice(0, 20)}</p> */}
-                            <button className="text-blue-700 font-semibold pl-2" onClick={() => document.getElementById('my_modal_3').showModal()}>read more</button>
-                            <dialog id="my_modal_3" className="modal modal-bottom sm:modal-middle">
-                                <div className="modal-box ">
-                                    <form method="dialog">
-                                        {/* if there is a button in form, it will close the modal */}
-                                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                    </form>
-                                    <h3 className="font-bold text-lg">Description</h3>
-                                    <p className="py-4">{task.description}</p>
-                                </div>
-                            </dialog>
-                        </div>
-
-                        :
-                        <p>{task.description}</p>
-
+                        <p>Description: {task.description}</p>
                     </div>
-
-
                 </div>
             </div>
 
 
-            <div className="flex flex-col-reverse md:flex-row items-center gap-2">
+            <div className="flex flex-col-reverse md:flex-row items-center gap-5">
                 <button className="text-blue-700 font-semibold pl-2" onClick={() => document.getElementById(modalId).showModal()}><FaEdit className="text-xl text-[#239696]"></FaEdit></button>
                 <dialog id={modalId} className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box ">
@@ -192,12 +180,8 @@ const Going = ({ task, refetch }) => {
                     onClick={() => handleDelete(task._id)}
                 ></MdDelete></button>
 
-                {/* <button
-                    // onClick={() => handleUpdateStatusOngoing(task._id)}
-                    className="btn font-medium text-black bg-[#D2E9E9] border-[#C4DFDF]">
-                    <p >On Going</p>
-                </button> */}
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
