@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { app } from '../Banner/Firebase/firebase.config';
-import { GoogleAuthProvider, getAuth, signInWithPopup, updateProfile } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, updateProfile } from 'firebase/auth';
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
@@ -19,10 +19,12 @@ const SignUp = () => {
     console.log('location in the register page', location);
 
     const auth = getAuth(app);
-    const Provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
 
     const handleGoogleSingIn = () => {
-        signInWithPopup(auth, Provider)
+        signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user;
                 console.log(user);
@@ -31,6 +33,19 @@ const SignUp = () => {
             })
             .catch(error => {
                 console.log('error', error.message);
+            })
+    }
+
+    const handleGithubSingIn = () => {
+        signInWithPopup(auth, githubProvider)
+            .then(result => {
+                const loggdUser = result.user;
+                console.log(loggdUser);
+                navigate(location?.state ? location.state : '/')
+                toast.success('User Created Successfully')
+            })
+            .catch(error => {
+                console.log(error);
             })
     }
 
@@ -125,7 +140,7 @@ const SignUp = () => {
                                     </button>
                                 </div>
                                 <div>
-                                    <button className="btn btn-outline ">
+                                    <button onClick={handleGithubSingIn} className="btn btn-outline ">
                                         <FiGithub className="lg:text-3xl md:text-lg"></FiGithub>
                                         Github
                                     </button>

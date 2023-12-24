@@ -1,6 +1,10 @@
 
 
+
 const Section = () => {
+
+
+
     const benefits = [
         {
             title: 'Increased Productivity',
@@ -44,11 +48,12 @@ const Section = () => {
         <div>
             <div className="bg-gray-100 py-16 mt-10 mb-10">
                 <div className="container mx-auto">
-                    <h2 className="text-4xl font-bold mb-8 text-center">Benefits of Task Management</h2>
+                    <h2 className="text-4xl font-bold mb-8 text-center">Benefits of <span className="text-[#7BD3EA]">Task Management</span></h2>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8"  >
                         {benefits.map((benefit, index) => (
-                            <div key={index} className="bg-white p-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                            <div key={index} className="bg-white p-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105" data-aos="fade-up"
+                                data-aos-anchor-placement="center-bottom" >
                                 <h3 className="text-xl font-semibold mb-4">{benefit.title}</h3>
                                 <p className="text-sm">{benefit.description}</p>
                             </div>

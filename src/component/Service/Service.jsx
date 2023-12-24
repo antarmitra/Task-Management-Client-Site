@@ -43,7 +43,7 @@ const Service = () => {
     return (
         <section className="py-16 bg-gray-100">
             <div className="container mx-auto">
-                <h2 className="text-3xl font-semibold mb-8 text-center">Our Services</h2>
+                <h2 className="text-3xl font-semibold mb-8 text-center">Our <span className='text-[#7BD3EA]'>Services</span></h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
                         <ServiceCard key={index} {...service} />
@@ -56,7 +56,7 @@ const Service = () => {
 
 const ServiceCard = ({ icon, title, description }) => {
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+        <div className="bg-white p-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105" data-aos="flip-right">
             <div className="flex items-center justify-center mb-4">
                 <img src={icon} alt={title} className="h-32 w-32" />
             </div>

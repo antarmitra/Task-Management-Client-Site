@@ -4,16 +4,20 @@ import blog3 from "../../../src/assets/image/blog3.jpg"
 import blog4 from "../../../src/assets/image/blog4.jpg"
 import blog5 from "../../../src/assets/image/blog5.png"
 import blog6 from "../../../src/assets/image/blog6.png"
+import banner from '../../../src/assets/image/blogBanner.jpg'
 
 const Blog = () => {
     return (
         <div>
+            <div>
+                <img className="w-full lg:h-[600px] rounded-lg" src={banner} alt="" />
+            </div>
             <section className="max-w-screen-lg mx-auto my-8">
-                <h2 className="text-3xl text-gray-800 mb-6 text-center">Latest Blog Posts</h2>
+                <h2 className="text-3xl text-gray-800 mb-6 text-center font-medium">Latest <span className="text-[#7BD3EA]"> Blog</span> Posts</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Blog Card 1 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group" data-aos="fade-right">
                         <img src={blog1} alt="Blog Image 1" className="w-full h-48 object-cover transition duration-300 transform group-hover:scale-105" />
                         <div className="p-4">
                             <h3 className="text-xl font-bold text-gray-800 mb-2">The Art of Task Prioritization</h3>
@@ -24,7 +28,7 @@ const Blog = () => {
                     </div>
 
                     {/* Blog Card 2 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group" data-aos="fade-down">
                         <img src={blog2} alt="Blog Image 2" className="w-full h-48 object-cover transition duration-300 transform group-hover:scale-105" />
                         <div className="p-4">
                             <h3 className="text-xl font-bold text-gray-800 mb-2">Collaboration Tips for Remote Teams</h3>
@@ -35,7 +39,7 @@ const Blog = () => {
                     </div>
 
                     {/* Blog Card 3 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group" data-aos="fade-right">
                         <img src={blog3} alt="Blog Image 3" className="w-full h-48 object-cover transition duration-300 transform group-hover:scale-105" />
                         <div className="p-4">
                             <h3 className="text-xl font-bold text-gray-800 mb-2">Mastering Task Automation with TaskTrak</h3>
@@ -46,7 +50,7 @@ const Blog = () => {
                     </div>
 
                     {/* Blog Card 4 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group" data-aos="fade-right">
                         <img src={blog4} alt="Blog Image 4" className="w-full h-48 object-cover transition duration-300 transform group-hover:scale-105" />
                         <div className="p-4">
                             <h3 className="text-xl font-bold text-gray-800 mb-2">Boosting Team Productivity with TaskTrak</h3>
@@ -57,7 +61,7 @@ const Blog = () => {
                     </div>
 
                     {/* Blog Card 5 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group" data-aos="fade-down">
                         <img src={blog5} alt="Blog Image 5" className="w-full h-48 object-cover transition duration-300 transform group-hover:scale-105" />
                         <div className="p-4">
                             <h3 className="text-xl font-bold text-gray-800 mb-2">Effective Time Management Techniques</h3>
@@ -68,7 +72,7 @@ const Blog = () => {
                     </div>
 
                     {/* Blog Card 6 */}
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md mb-6 group" data-aos="fade-right">
                         <img src={blog6} alt="Blog Image 6" className="w-full h-48 object-cover transition duration-300 transform group-hover:scale-105" />
                         <div className="p-4">
                             <h3 className="text-xl font-bold text-gray-800 mb-2">Unlocking the Potential of TaskTrak</h3>
